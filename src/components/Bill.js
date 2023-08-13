@@ -85,7 +85,7 @@ const Bill = ({ friends, onUpdateFriend, activeFriend }) => {
         }}
       >
         <option value="me">Me</option>
-        <option value="friend">Friend</option>
+        <option value="friend">{name}</option>
       </select>
 
       <button className="button">Split Bill</button>
