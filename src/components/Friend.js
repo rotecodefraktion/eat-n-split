@@ -7,7 +7,7 @@ const Friend = ({ friend, activeFriend, onSelect, onClose }) => {
       : friend.account > 0
       ? `
   ${friend.name} owes you ${friend.account} €`
-      : `You owe ${friend.name} ${friend.account} €`;
+      : `You owe ${friend.name} ${Math.abs(friend.account)} €`;
 
   const className =
     friend.account === 0 ? "" : friend.account > 0 ? "green" : "red";

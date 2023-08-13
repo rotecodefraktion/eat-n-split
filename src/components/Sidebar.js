@@ -56,7 +56,11 @@ const AddFriend = ({ onAdd, onClose }) => {
         <label htmlFor="name">👩🏿‍🤝‍👨🏼 Name</label>
         <input type="text" id="name" />
         <label htmlFor="image">👻 imageurl</label>
-        <input type="url" id="imageurl" />
+        <input
+          type="url"
+          id="imageurl"
+          placeholder="https://i.pravatar.cc/150?img=50"
+        />
         <input className="button" type="submit" value="Add" />
       </form>
       <Button onClick={onClose}>
