@@ -93,7 +93,7 @@ const Bill = ({ friends, onUpdateFriend, activeFriend }) => {
           handleSelectPayer(p);
         }}
       >
-        <option value="me">Me</option>
+        <option value="me">You</option>
         <option value="friend">{name}</option>
       </select>
 
