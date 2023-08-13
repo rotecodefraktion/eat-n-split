@@ -31,13 +31,22 @@ const Bill = ({ friends, onUpdateFriend, activeFriend }) => {
   };
 
   const handleChangeBill = (value) => {
-    setBill(value * 1);
+    value = value.replace(/€/g, "");
+    value = Number(value);
+    if (Number(value) < Number(myExpense)) {
+      alert(
+        `Your expense € ${myExpense} cannot be higher than the bill € ${value}`
+      );
+      return;
+    }
+    setBill(value);
   };
 
   const handleMyExpense = (value) => {
-    if (value > bill) {
-      console.log(value, bill);
-      alert(`Your expense ${value} cannot be higher than the bill ${bill}`);
+    value = value.replace(/€/g, "");
+    value = Number(value);
+    if (Number(value) > Number(bill)) {
+      alert(`Your expense € ${value} cannot be higher than the bill € ${bill}`);
       return;
     }
     setMyExpense(value);
@@ -54,15 +63,15 @@ const Bill = ({ friends, onUpdateFriend, activeFriend }) => {
         type="text"
         name="billValue"
         id="billValue"
-        value={bill}
+        value={"€ " + bill.toString()}
         onChange={(e) => handleChangeBill(e.target.value)}
       />
 
       <label htmlFor="myexpense">🧍🏻‍♂️ Your expense</label>
       <input
-        type="number"
+        type="text"
         name="myExpense"
-        value={myExpense}
+        value={"€ " + myExpense.toString()}
         disabled={bill * 1 > 0 ? false : true}
         onChange={(e) => handleMyExpense(e.target.value)}
       />
@@ -72,7 +81,7 @@ const Bill = ({ friends, onUpdateFriend, activeFriend }) => {
         type="text"
         name="friendsExpense"
         readOnly={true}
-        value={friendExpense}
+        value={"€ " + friendExpense.toString()}
         disabled={true}
       />
 
@@ -88,7 +97,9 @@ const Bill = ({ friends, onUpdateFriend, activeFriend }) => {
         <option value="friend">{name}</option>
       </select>
 
-      <button className="button">Split Bill</button>
+      <button className="button" disabled={bill === 0}>
+        Split Bill
+      </button>
     </form>
   );
 };
